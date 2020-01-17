@@ -12,18 +12,18 @@ function addTabs() {
   const tab = document.createElement("div");
   tab.classList.add("tab");
 
-  tab.textContent = "topic here";
+  tab.textContent = "Topic Here";
   return tab;
 }
 
-const topics = document.querySelector(".topics");
+const topicsClass = document.querySelector(".topics");
 
 axios
   .get("https://lambda-times-backend.herokuapp.com/topics")
   .then(response => {
     console.log(response);
-    response.data.topics.forEach(item => {
-      topics.append(addTabs(item));
+    Object.values(response.data.topics).forEach(item => {
+      topicsClass.append(addTabs(item));
     });
   })
   .catch(err => {
